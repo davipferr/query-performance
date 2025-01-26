@@ -1,0 +1,7 @@
+# Ignore DLL and PDB files
+*.dll
+*.pdb
+
+# Ignore bin and obj directories
+bin/
+obj/
