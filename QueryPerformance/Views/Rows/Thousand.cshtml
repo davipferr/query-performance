@@ -1,3 +1,105 @@
+@model IEnumerator<QueryPerformance.Models.Person>
+
+<style>
+    
+.table-width  { width: 3000px; }  
+
+</style>
+
 <div>
-    <h1>Thousand</h1>
+    <!-- Pagination Header -->
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Table -->
+    <div class="table-responsive mb-3 table-width">
+        <table class="table table-dark table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Idade</th>
+                <th scope="col">CPF</th>
+                <th scope="col">RG</th>
+                <th scope="col">Data Nasc</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Signo</th>
+                <th scope="col">Mãe</th>
+                <th scope="col">Pai</th>
+                <th scope="col">Email</th>
+                <th scope="col">Senha</th>
+                <th scope="col">CEP</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Número</th>
+                <th scope="col">Bairro</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Telefone Fixo</th>
+                <th scope="col">Celular</th>
+                <th scope="col">Altura</th>
+                <th scope="col">Peso</th>
+                <th scope="col">Tipo Sanguíneo</th>
+                <th scope="col">Cor</th>
+            </tr>
+            </thead>
+            <tbody>
+            @for (var i = 0; i < 10; i++) {
+                <tr>
+                    <tr>
+                        <th scope="row">@(i+1)</th>
+                        <td>Maria Souza</td>
+                        <td>25</td>
+                        <td>987.654.321-00</td>
+                        <td>20.987.654-3</td>
+                        <td>15/05/1998</td>
+                        <td>Feminino</td>
+                        <td>Touro</td>
+                        <td>Ana Souza</td>
+                        <td>José Souza</td>
+                        <td>maria.souza@example.com</td>
+                        <td>senha456</td>
+                        <td>87654-321</td>
+                        <td>Rua das Flores</td>
+                        <td>200</td>
+                        <td>Jardim</td>
+                        <td>Rio de Janeiro</td>
+                        <td>RJ</td>
+                        <td>(21) 2222-2222</td>
+                        <td>(21) 88888-8888</td>
+                        <td>1.65</td>
+                        <td>60</td>
+                        <td>A+</td>
+                        <td>verde</td>
+                    </tr>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination Footer -->
+    <nav class="navbar-dark">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item "><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
