@@ -26,6 +26,9 @@ namespace QueryPerformance
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/css/main.css"));
+            
+            bundles.Add(new ScriptBundle("~/Scripts/modules").Include(
+                    "~/Scripts/modules/localStorageHandler.js"));
         }
     }
 }

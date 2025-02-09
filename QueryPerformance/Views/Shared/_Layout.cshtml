@@ -3,42 +3,88 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@ViewBag.Title - My ASP.NET Application</title>
+        <title>@ViewBag.Title Rows Challenge</title>
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
-        <nav class="navbar bg-dark">
-            <div class="my-container btn-group">
-                <button type="button" class="btn btn-primary">1.000 Rows</button>
-                <button type="button" class="btn btn-primary">10.000 Rows</button>
-                <button type="button" class="btn btn-primary">100.000 Rows</button>
-                <button type="button" class="btn btn-primary">1.000.000 Rows</button>
-            </div>
-        </nav>
+        <div>
+            <nav class="navbar bg-dark">
+                <div class="my-container btn-group">
+                    @Html.ActionLink(
+                        "1.000 Rows",
+                        "Thousand",
+                        "Rows",
+                        new
+                        {
+                            id = "thousand",
+                            @class = "btn btn-primary"
+                        }
+                    )
+
+                    @Html.ActionLink(
+                        "10.000 Rows",
+                        "TenThousand",
+                        "Rows",
+                        new
+                        {
+                            id = "ten-thousand",
+                            @class = "btn btn-primary"
+                        }
+                    )
+
+                    @Html.ActionLink(
+                        "100.000 Rows",
+                        "HundredThousand",
+                        "Rows",
+                        new
+                        {
+                            id = "hundred-thousand",
+                            @class = "btn btn-primary"
+                        }
+                    )
+
+                    @Html.ActionLink(
+                        "1.000.000 Rows",
+                        "Million",
+                        "Rows",
+                        new
+                        {
+                            id = "million",
+                            @class = "btn btn-primary"
+                        }
+                    )
+                </div>
+            </nav>
+        </div>
         <div class="container body-content">
             @RenderBody()
         </div>
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/Scripts/modules")
         @RenderSection("scripts", required: false)
 
         <script>
             $(document).ready(
                 function() {
-                    // When a button is clicked
-                    $(".btn-group .btn").click(
-                        function() {
-                            // Remove "btn-active" class from all buttons
-                            $(".btn-group .btn").removeClass("btn-primary-active");
+                        let localStorageHandler = new LocalStorageHandler();
 
-                            // Add "btn-active" class to the clicked button
-                            $(this).addClass("btn-primary-active");
+                        $(".btn-group .btn").on("click", function() {
+                                $(".btn-group .btn").removeClass("link-clicked");
+
+                                localStorageHandler.setItem("clickedLinkId", $(this).attr('id'));
+                            }
+                        );
+                        
+                        let clickedLinkId = localStorageHandler.getItem("clickedLinkId");
+                        if (clickedLinkId) {
+                            $('#' + clickedLinkId).addClass('link-clicked');
+                            localStorageHandler.clearLocalStorage();
                         }
-                    )
                 }
-            )
+            );
         </script>
     </body>
 </html>
