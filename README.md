@@ -20,6 +20,26 @@ Query Performance is a project that focuses on making database queries as perfor
 - [Entity Framework 6](https://learn.microsoft.com/en-us/ef/ef6/)
 - [Bootstrap 5](https://getbootstrap.com/)
 
+# ⬇️ Downloading the tools to use the database
+
+1 - SQL Server Express
+
+Access the link -> [SQL Server](https://www.microsoft.com/en/sql-server/sql-server-downloads)
+
+Scroll the page until you find the options, "Developer" and "Express". Click to download the SQL Server Express
+
+Follow the steps to install
+
+2 - SQL Server Management Studio (SSMS)
+
+Access the link -> [SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)
+
+Scroll until the topic "Download SSMS"
+
+click on the link, "Download SQL Server Management Studio (SSMS) 20.2", to start the download
+
+Follow the steps to install
+
 # 🎲 Setting up the Databases
 
 1 - Create the data base
