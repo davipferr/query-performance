@@ -1,10 +1,20 @@
 ﻿using System;
 using System.Web.Mvc;
+using QueryPerformance.Models;
+using QueryPerformance.Repositories.Implementations;
+using QueryPerformance.Repositories.Interfaces;
+using QueryPerformance.Data;
 
 namespace QueryPerformance.Controllers
 {
     public class RowsController : Controller
     {
+        private readonly IGenericRepository<Person> _personRepository;
+
+        public RowsController()
+        {
+            _personRepository = new GenericRepository<Person>(new SqlServerDbContext());
+        }
 
         public ViewResult Thousand(int page = 1)
         {
@@ -21,6 +31,8 @@ namespace QueryPerformance.Controllers
             ViewBag.TotalPages = totalPages;
             ViewBag.StartIndex = startIndex;
             ViewBag.EndIndex = endIndex;
+
+            var persons = _personRepository.GetAll();
             
             return View();
         }
