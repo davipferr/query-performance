@@ -162,6 +162,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mapping\PersonProfile.cs" />
+    <Compile Include="Mapping\Utils.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Implementations\GenericRepository.cs" />
@@ -208,6 +210,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\modules\localStorageHandler.js" />
+    <Content Include="ViewModels\ThousandRowsViewModel" />
     <Content Include="Views\Rows\HundredThousand.cshtml" />
     <Content Include="Views\Rows\Million.cshtml" />
     <Content Include="Views\Rows\TenThousand.cshtml" />
