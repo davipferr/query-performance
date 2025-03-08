@@ -94,44 +94,38 @@ OBS: [This data was generated on the 4devs website](https://www.4devs.com.br/ger
 DECLARE @Counter INT = 1;
 BEGIN TRANSACTION;
 
-WHILE @Counter <= NumberOfRows
-	BEGIN
-	    INSERT INTO TableName
-		VALUES (
-		    'Henrique Daniel Vitor da Silva', 
-		    21, 
-		    '555.111.777-33', 
-		    '22.333.222-5', 
-		    CONVERT(DATE, '18/01/2004', 103),
-		    'Masculino', 
-		    'Capricórnio', 
-		    'Sophia Laís Natália', 
-		    'Miguel Kevin da Silva', 
-		    'henriquedanieldasilva@tecvap.com.br', 
-		    'zECEP9qnp3', 
-		    '06843-448', 
-		    'Rua dos Ex-Combatentes', 
-		    870, 
-		    'Chácaras Lidia', 
-		    'Embu das Artes', 
-		    'SP', 
-		    '(11) 2509-4050', 
-		    '(11) 99594-8429', 
-		    CAST(REPLACE('1,97', ',', '.') AS DECIMAL(3,2)),
-		    53, 
-		    'B-', 
-		    'dourado'
-		);
-	    
-		SET @Counter += 1;
-		
-		-- Commit in batches (e.g., 10,000 rows) to avoid transaction log bloat
-		IF @Counter % 300 = 0
-			BEGIN
-			COMMIT;
-
-		BEGIN TRANSACTION;
-	END
+WHILE @Counter <= 1000
+BEGIN
+    INSERT INTO OneThousandRows
+	VALUES (
+	    'Henrique Daniel Vitor da Silva', 
+	    21, 
+	    '555.111.777-33', 
+	    '22.333.222-5', 
+	    CONVERT(DATE, '18/01/2004', 103),
+	    'Masculino', 
+	    'Capricórnio', 
+	    'Sophia Laís Natália', 
+	    'Miguel Kevin da Silva', 
+	    'henriquedanieldasilva@tecvap.com.br', 
+	    'zECEP9qnp3', 
+	    '06843-448', 
+	    'Rua dos Ex-Combatentes', 
+	    870, 
+	    'Chácaras Lidia', 
+	    'Embu das Artes', 
+	    'SP', 
+	    '(11) 2509-4050', 
+	    '(11) 99594-8429', 
+	    CAST(REPLACE('1,97', ',', '.') AS DECIMAL(3,2)),
+	    53, 
+	    'B-', 
+	    'dourado'
+	);
+    
+	SET @Counter += 1;
+	COMMIT;
+	BEGIN TRANSACTION;
 END
 ```
 
