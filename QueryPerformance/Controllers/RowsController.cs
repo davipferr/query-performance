@@ -9,11 +9,11 @@ namespace QueryPerformance.Controllers
 {
     public class RowsController : Controller
     {
-        private readonly IGenericRepository<Person> _personRepository;
+        private readonly IGenericRepository<OneThousandRows> _oneThousandRowsRepository;
 
         public RowsController()
         {
-            _personRepository = new GenericRepository<Person>(new SqlServerDbContext());
+            _oneThousandRowsRepository = new GenericRepository<OneThousandRows>(new SqlServerDbContext());
         }
 
         public ViewResult Thousand(int page = 1)
@@ -32,7 +32,7 @@ namespace QueryPerformance.Controllers
             ViewBag.StartIndex = startIndex;
             ViewBag.EndIndex = endIndex;
 
-            var persons = _personRepository.GetAllRows();
+            var rows = _oneThousandRowsRepository.GetAllRows();
             
             return View();
         }
