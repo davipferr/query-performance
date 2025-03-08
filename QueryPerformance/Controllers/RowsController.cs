@@ -32,7 +32,7 @@ namespace QueryPerformance.Controllers
             ViewBag.StartIndex = startIndex;
             ViewBag.EndIndex = endIndex;
 
-            var persons = _personRepository.GetAll();
+            var persons = _personRepository.GetAllRows();
             
             return View();
         }

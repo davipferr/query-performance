@@ -159,6 +159,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\RowsController.cs" />
     <Compile Include="Data\SqlServerDbContext.cs" />
+    <Compile Include="Exceptions\NullExceptions\NullExceptionBase.cs" />
+    <Compile Include="Exceptions\NullExceptions\NullExceptions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

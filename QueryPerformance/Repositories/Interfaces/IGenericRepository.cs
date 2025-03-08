@@ -2,12 +2,8 @@
 
 namespace QueryPerformance.Repositories.Interfaces
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<TEntity> where TEntity : class
     {
-        /// <summary>
-        /// Retrieves all entities
-        /// </summary>
-        /// <returns>An IEnumerable of entities.</returns>
-        IEnumerable<T> GetAll();
+        IEnumerable<TEntity> GetAllRows();
     }
 }
