@@ -1,4 +1,8 @@
-@model IEnumerator<QueryPerformance.Models.OneThousandRows>
+@model QueryPerformance.Helpers.PaginatedList<QueryPerformance.Models.OneThousandRows>
+
+@{
+    var rowsList = Model.Items.ToList();
+}
 
 <style>
     
@@ -10,45 +14,59 @@
     <!-- Pagination Header -->
     <nav>
         <ul class="pagination justify-content-center">
-            <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+            <li class="page-item @(Model.PageIndex  == 1 ? "disabled" : "")">
                 <a
                     class="page-link"
                     href="@(
-                                ViewBag.CurrentPage > 1
-                                ? Url.Action("Thousand", new { page = ViewBag.CurrentPage - 1})
+                                Model.HasPreviousPage
+                                ? Url.Action("Thousand", new { page = Model.PageIndex - 1 })
                                 : "#"
                           )"
                     tabindex="-1"
                 >
-                    Previous
+                    <
                 </a>
             </li>
 
-            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            @if (Model.StartPage > 1)
             {
-                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Thousand", new { page = Model.StartPage - 1 })">...</a>
+                </li>
+            }
+
+            @for (int i = Model.StartPage; i <= Model.EndPage; i++)
+            {
+                <li class="page-item @(i == Model.PageIndex ? "active" : "")">
                     <a class="page-link" href="@Url.Action("Thousand", new { page = i })">@i</a>
                 </li>
             }
 
-            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+            @if (Model.EndPage < Model.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Thousand", new { page = Model.EndPage + 1 })">...</a>
+                </li>
+            }
+
+            <li class="page-item @(Model.PageIndex == Model.TotalPages ? "disabled" : "")">
                 <a
                     class="page-link"
                     href="@(
-                                ViewBag.CurrentPage < ViewBag.TotalPages 
-                                ? Url.Action("Thousand", new { page = ViewBag.CurrentPage + 1 })
+                                Model.HasNextPage
+                                ? Url.Action("Thousand", new {  page = Model.PageIndex + 1 })
                                 : "#"
                           )"
                 >
-                    Next
+                    >
                 </a>
             </li>
         </ul>
     </nav>
 
     <!-- Table -->
-    <div class="table-responsive mb-3 table-width">
-        <table class="table table-dark table-striped table-hover table-bordered">
+    <div class="table-responsive mb-3 overflow-auto">
+        <table class="table table-dark table-striped table-width table-hover table-bordered">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -78,52 +96,36 @@
             </tr>
             </thead>
             <tbody>
-            @for (var i = ViewBag.StartIndex; i < ViewBag.EndIndex; i++) {
-                <tr>
+                @foreach (var row in rowsList)
+                {
                     <tr>
-                        <th scope="row">@(i + 1)</th>
-                        <td>Maria Souza</td>
-                        <td>25</td>
-                        <td>987.654.321-00</td>
-                        <td>20.987.654-3</td>
-                        <td>15/05/1998</td>
-                        <td>Feminino</td>
-                        <td>Touro</td>
-                        <td>Ana Souza</td>
-                        <td>José Souza</td>
-                        <td>maria.souza@example.com</td>
-                        <td>senha456</td>
-                        <td>87654-321</td>
-                        <td>Rua das Flores</td>
-                        <td>200</td>
-                        <td>Jardim</td>
-                        <td>Rio de Janeiro</td>
-                        <td>RJ</td>
-                        <td>(21) 2222-2222</td>
-                        <td>(21) 88888-8888</td>
-                        <td>1.65</td>
-                        <td>60</td>
-                        <td>A+</td>
-                        <td>verde</td>
+                        <th scope="row">@row.Id</th>
+                        <td>@row.Nome</td>
+                        <td>@row.Idade</td>
+                        <td>@row.Cpf</td>
+                        <td>@row.Rg</td>
+                        <td>@row.DataNasc.ToString("dd/MM/yyyy")</td>
+                        <td>@row.Sexo</td>
+                        <td>@row.Signo</td>
+                        <td>@row.Mae</td>
+                        <td>@row.Pai</td>
+                        <td>@row.Email</td>
+                        <td>@row.Senha</td>
+                        <td>@row.Cep</td>
+                        <td>@row.Endereco</td>
+                        <td>@row.Numero</td>
+                        <td>@row.Bairro</td>
+                        <td>@row.Cidade</td>
+                        <td>@row.Estado</td>
+                        <td>@row.TelefoneFixo</td>
+                        <td>@row.Celular</td>
+                        <td>@row.Altura</td>
+                        <td>@row.Peso</td>
+                        <td>@row.TipoSanguineo</td>
+                        <td>@row.Cor</td>
                     </tr>
-                </tr>
-            }
+                }
             </tbody>
         </table>
     </div>
-
-    <!-- Pagination Footer -->
-    <nav class="navbar-dark">
-        <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-            </li>
-            <li class="page-item "><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
-    </nav>
 </div>

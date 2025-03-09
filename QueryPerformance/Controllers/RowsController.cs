@@ -1,9 +1,9 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using QueryPerformance.Models;
 using QueryPerformance.Repositories.Implementations;
 using QueryPerformance.Repositories.Interfaces;
 using QueryPerformance.Data;
+using QueryPerformance.Helpers;
 
 namespace QueryPerformance.Controllers
 {
@@ -16,25 +16,14 @@ namespace QueryPerformance.Controllers
             _oneThousandRowsRepository = new GenericRepository<OneThousandRows>(new SqlServerDbContext());
         }
 
-        public ViewResult Thousand(int page = 1)
+        public ViewResult Thousand(int page = 1, int recordsPerPage = 10, int groupSize = 5)
         {
-            int recordsPerPage = 10;
-            int totalRecords = 50;
-            int totalPages = (int)Math.Ceiling((double)totalRecords / recordsPerPage);
-            
-            int startIndex = (page - 1) * recordsPerPage;
-            int endIndex = Math.Min(page * recordsPerPage, totalRecords);
-            
-            ViewBag.CurrentPage = page;
-            ViewBag.RecordsPerPage = recordsPerPage;
-            ViewBag.TotalRecords = totalRecords;
-            ViewBag.TotalPages = totalPages;
-            ViewBag.StartIndex = startIndex;
-            ViewBag.EndIndex = endIndex;
-
             var rows = _oneThousandRowsRepository.GetAllRows();
-            
-            return View();
+
+            var pagedRows = PaginatedList<OneThousandRows>
+                                                          .Create(rows, page, recordsPerPage, groupSize);
+
+            return View(pagedRows);
         }
 
         public ViewResult TenThousand()
